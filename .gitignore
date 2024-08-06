@@ -1,3 +1,4 @@
 node_modules
 Neon Postgre string.txt
 dist
+.env
