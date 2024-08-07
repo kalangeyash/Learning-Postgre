@@ -128,4 +128,22 @@ async function changeUsername(prevUsername:string, newUsername : string){
 
     console.log(result.rows)
 }
-changeUsername('abhay' ,'SELECT * FROM users')
+// changeUsername('abhay' ,'SELECT * FROM users')
+
+async function foreignKey(){
+    await client.connect();
+    const query = `
+        CREATE TABLE addresses(
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL,
+        city VARCHAR(50) NOT NULL,
+        country VARCHAR(50) NOT NULL,
+        street VARCHAR(50) NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+        );
+    `
+    const res = await client.query(query);
+    console.log(res);
+}
+// foreignKey(); 
